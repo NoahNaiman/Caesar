@@ -1,6 +1,8 @@
 //Dependecy imports
 const express = require('express');
 const app = express();
+const fs = require('fs');
+const multer = require('multer');
 const path = require('path');
 
 //View engine setup
@@ -19,6 +21,12 @@ app.get('/', (req, res) =>
 );
 
 //Dear Santa
-app.post('/dearsanta', (req, res) =>
-	res.send('YOYOYOYO!')
-);
+app.post('/dearsanta', (req, res) =>{
+	var dir = path.join(_dirname, 'uploads', req.project);
+	if(!fs.existsSynch(dir)){
+		fs.mkdirSynch(dir)
+	}
+	else{
+
+	}
+});
