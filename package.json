@@ -1,0 +1,22 @@
+{
+  "name": "santa",
+  "version": "1.0.0",
+  "description": "Project hosting service for BostonHacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoahNaiman/Santa.git"
+  },
+  "author": "Noah Naiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoahNaiman/Santa/issues"
+  },
+  "homepage": "https://github.com/NoahNaiman/Santa#readme",
+  "dependencies": {
+    "npm": "^6.1.0"
+  }
+}
