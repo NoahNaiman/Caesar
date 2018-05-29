@@ -1,15 +1,20 @@
-//Library imports
-
-//Set up express
+//Dependecy imports
 const express = require('express');
 const app = express();
-app.set('view engine', 'pug');
+const path = require('path');
 
-//For static content
-app.use(express.static(__dirname + '/static/'));
+//View engine setup
+app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 //Server listening
-app.listen(8080, function(){
-	console.log("Santa Claus is coming to port 8080!");
-});
+app.listen(8080, () => 
+	console.log('Santa Claus is coming to port 8080!')
+);
+
+//Homepage
+app.get('/', (req, res) =>
+	res.render('index')
+);
 
