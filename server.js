@@ -13,8 +13,12 @@ app.listen(8080, () =>
 	console.log('Santa Claus is coming to port 8080!')
 );
 
-//Homepage
+//Landing
 app.get('/', (req, res) =>
 	res.render('index')
 );
 
+//Dear Santa
+app.post('/dearsanta', (req, res) =>
+	res.send('YOYOYOYO!')
+);
