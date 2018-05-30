@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const multer = require('multer');
+const formidable = require('formidable');
 const path = require('path');
 
 //View engine setup
@@ -22,11 +22,23 @@ app.get('/', (req, res) =>
 
 //Dear Santa
 app.post('/dearsanta', (req, res) =>{
-	var dir = path.join(_dirname, 'uploads', req.project);
-	if(!fs.existsSynch(dir)){
-		fs.mkdirSynch(dir);
-	}
-	else{
-
-	}
+	var form = new formidable.IncomingForm();
+	form.parse(req)
+	.on('field', function(name, field){
+		if(name == "project"){
+			var dir = path.join(__dirname, 'uploads', field);
+			if(!fs.existsSync(dir)){
+				fs.mkdirSync(dir);
+			}
+			else{
+				console.log("Folder exists");
+			}
+		}
+	})
+	.on('file', function(name, file){
+		console.log('Got file:', file);
+	})
+	.on('end', function(){
+		res.send('YOYOYOYOYO');
+	});
 });
