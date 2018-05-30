@@ -24,7 +24,7 @@ app.get('/', (req, res) =>
 app.post('/dearsanta', (req, res) =>{
 	var dir = path.join(_dirname, 'uploads', req.project);
 	if(!fs.existsSynch(dir)){
-		fs.mkdirSynch(dir)
+		fs.mkdirSynch(dir);
 	}
 	else{
 
