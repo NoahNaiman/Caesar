@@ -23,8 +23,8 @@ app.get('/', (req, res) =>
 //Dear Santa
 app.post('/dearsanta', (req, res) =>{
 	var form = new formidable.IncomingForm();
-	form.parse(req)
-	.on('field', function(name, field){
+	form.parse(req);
+	form.on('field', function(name, field){
 		if(name == "project"){
 			var dir = path.join(__dirname, 'uploads', field);
 			if(!fs.existsSync(dir)){
@@ -32,13 +32,13 @@ app.post('/dearsanta', (req, res) =>{
 			}
 			else{
 				console.log("Folder exists");
+				res.send("Folder already exists!!!");
+				process.exit(1);
 			}
+			form.on('fileBegin', function(name, file){
+				file.path = path.join(dir, file.name);
+			});
 		}
-	})
-	.on('file', function(name, file){
-		console.log('Got file:', file);
-	})
-	.on('end', function(){
-		res.send('YOYOYOYOYO');
 	});
+	res.send("Request has been processed!");
 });
