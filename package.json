@@ -9,15 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoahNaiman/Santa.git"
+    "url": "git+https://github.com/NoahNaiman/Caesar.git"
   },
   "author": "Noah Naiman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NoahNaiman/Santa/issues"
+    "url": "https://github.com/NoahNaiman/Caesar/issues"
   },
-  "homepage": "https://github.com/NoahNaiman/Santa#readme",
+  "homepage": "https://github.com/NoahNaiman/Caesar#readme",
   "dependencies": {
+    "aws-sdk": "^2.249.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "formidable": "^1.2.1",
