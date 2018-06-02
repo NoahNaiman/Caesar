@@ -23,21 +23,29 @@ app.get('/', (req, res) =>
 
 //Veni, vidi, vici
 app.post('/venividivici', (req, res) =>{
+	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
+	//Create new routes
 	form.on('field', function(name, field){
 		if(name == 'project'){
+			//Check if project folder already exists
 			var dir = path.join(__dirname, 'uploads', field);
 			if(!fs.existsSync(dir)){
 				fs.mkdirSync(dir);
 			}
 			else{
+				//Exit with error if project already exists
+				//TODO: DELETE FOLDER TO ALLOW RELOAD!
 				console.log('Folder exists');
+				res.send('FOLDER EXISTS!!!');
 				process.exit(1);
 			}
+			//Save files to project folder
 			form.on('fileBegin', function(name, file){
 				file.path = path.join(dir, file.name);
 			});
+			//Create express route for project
 			exec.execFile('./caesar', [field], (error, stdout, stderr) => {
 				if(error){
 					throw error;
@@ -45,6 +53,7 @@ app.post('/venividivici', (req, res) =>{
 				console.log(stdout);
 			});
 		}
-	});
-	res.send('Request has been processed!');
+		//Redirect on process finishing
+		res.send('Request has been processed!')
+	})
 });
