@@ -23,10 +23,10 @@ int main(int argc, char const *argv[]){
 	//Close server
 	fclose(server);
 	printf("Server has been closed.\n");
-	int i;
-	for(i = 0; i < argc; i++){
-		printf("%s\n", argv[i]);
-	}
+	// int i;
+	// for(i = 0; i < argc; i++){
+	// 	printf("%s\n", argv[i]);
+	// }
 
 	return 0;
 }

@@ -41,6 +41,11 @@ app.post('/venividivici', (req, res) =>{
 			});
 		}
 	});
-	exec.execFile('caesar', ['arg1', 'Hello!', 'Third arg!!!']);
+	exec.execFile('./caesar', ["//THIS INPUT HAS BEEN TEST APPENDED"], (error, stdout, stderr) => {
+		if(error){
+			throw error;
+		}
+		console.log(stdout);
+	});
 	res.send('Request has been processed!');
 });
