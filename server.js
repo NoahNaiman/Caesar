@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 //Server listening
 app.listen(8080, () => 
-	console.log('Caesar has conquered port 8080!')
+	console.log('Caesar has conquered port 8080!\n')
 );
 
 //Landing
@@ -33,19 +33,18 @@ app.post('/venividivici', (req, res) =>{
 			}
 			else{
 				console.log('Folder exists');
-				res.send('Folder already exists!!!');
 				process.exit(1);
 			}
 			form.on('fileBegin', function(name, file){
 				file.path = path.join(dir, file.name);
 			});
+			exec.execFile('./caesar', [field], (error, stdout, stderr) => {
+				if(error){
+					throw error;
+				}
+				console.log(stdout);
+			});
 		}
-	});
-	exec.execFile('./caesar', ["//THIS INPUT HAS BEEN TEST APPENDED"], (error, stdout, stderr) => {
-		if(error){
-			throw error;
-		}
-		console.log(stdout);
 	});
 	res.send('Request has been processed!');
 });
