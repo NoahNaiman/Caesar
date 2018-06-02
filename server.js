@@ -26,22 +26,28 @@ app.post('/venividivici', (req, res) =>{
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
+
 	//Create new routes
 	form.on('field', function(name, field){
 		if(name == 'project'){
 			//Check if project folder already exists
 			var dir = path.join(__dirname, 'uploads', field);
+
+			//Check if project directory exists already.
 			if(fs.existsSync(dir)){
-				console.log("FOLDER EXISTS!!!!");
 				deleteFolder(dir);
 			}
+
+			//Create new project directory
 			fs.mkdir(dir, ()=>{return null;});
+
 			//Save files to project folder
 			form.on('fileBegin', function(name, file){
 				file.path = path.join(dir, file.name);
 			});
+
 			//Create express route for project
-			exec.execFile('./caesar', [field], (error, stdout, stderr) => {
+			exec.execFile('./caesar', [field], (error, stdout, stderr) =>{
 				if(error){
 					throw error;
 				}
@@ -53,6 +59,7 @@ app.post('/venividivici', (req, res) =>{
 	res.send('Request has been processed!')
 });
 
+//Recursively delete a folder and its contents
 function deleteFolder(dir){
 	if(fs.existsSync(path)){
 		fs.readdirSync(dir).forEach(function(file,index){
@@ -60,7 +67,7 @@ function deleteFolder(dir){
 			if(fs.lstatSync(curPath).isDirectory()){
 				deleteFolder(curPath);
 			}
-			else{ // delete file
+			else{
 				fs.unlinkSync(curPath);
 			}
 		});
