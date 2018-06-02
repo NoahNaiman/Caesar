@@ -35,7 +35,7 @@ app.post('/venividivici', (req, res) =>{
 				console.log("FOLDER EXISTS!!!!");
 				deleteFolder(dir);
 			}
-			fs.mkdirSync(dir);
+			fs.mkdir(dir, ()=>{return null;});
 			//Save files to project folder
 			form.on('fileBegin', function(name, file){
 				file.path = path.join(dir, file.name);
@@ -58,7 +58,7 @@ function deleteFolder(dir){
 		fs.readdirSync(dir).forEach(function(file,index){
 			var curPath = dir + "/" + file;
 			if(fs.lstatSync(curPath).isDirectory()){
-				deleteFolderRecursive(curPath);
+				deleteFolder(curPath);
 			}
 			else{ // delete file
 				fs.unlinkSync(curPath);
