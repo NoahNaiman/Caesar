@@ -3,7 +3,10 @@
 CC = gcc
 CFLAGS = -Wall -o
 
-all: caesar
+all: clean caesar
 
 caesar:
 	$(CC) $(CFLAGS) caesar caesar.c
+
+clean:
+	rm -f *.o caesar

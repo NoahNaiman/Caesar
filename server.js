@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 //Startup server
 app.listen(8080, () => 
-	console.log('Caesar has conquered port 8080!\n')
+	console.log('\nCaesar has conquered port 8080!\n')
 );
 
 //Landing page
