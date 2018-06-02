@@ -31,16 +31,11 @@ app.post('/venividivici', (req, res) =>{
 		if(name == 'project'){
 			//Check if project folder already exists
 			var dir = path.join(__dirname, 'uploads', field);
-			if(!fs.existsSync(dir)){
-				fs.mkdirSync(dir);
+			if(fs.existsSync(dir)){
+				console.log("FOLDER EXISTS!!!!");
+				deleteFolder(dir);
 			}
-			else{
-				//Exit with error if project already exists
-				//TODO: DELETE FOLDER TO ALLOW RELOAD!
-				console.log('Folder exists');
-				res.send('FOLDER EXISTS!!!');
-				process.exit(1);
-			}
+			fs.mkdirSync(dir);
 			//Save files to project folder
 			form.on('fileBegin', function(name, file){
 				file.path = path.join(dir, file.name);
@@ -53,7 +48,22 @@ app.post('/venividivici', (req, res) =>{
 				console.log(stdout);
 			});
 		}
-		//Redirect on process finishing
-		res.send('Request has been processed!')
-	})
+	});
+	//Redirect on process finishing
+	res.send('Request has been processed!')
 });
+
+function deleteFolder(dir){
+	if(fs.existsSync(path)){
+		fs.readdirSync(dir).forEach(function(file,index){
+			var curPath = dir + "/" + file;
+			if(fs.lstatSync(curPath).isDirectory()){
+				deleteFolderRecursive(curPath);
+			}
+			else{ // delete file
+				fs.unlinkSync(curPath);
+			}
+		});
+		fs.rmdirSync(dir);
+	}
+};
