@@ -7,6 +7,7 @@ int main(int argc, char const *argv[]){
 
 	//Server file to append to
 	FILE *server;
+	
 	//Buffer to hold new express route to be appended
 	char* startOfRoute = "\n\napp.get('/";
 	char* endOfRoute = "', (req, res) =>\n\tres.send('THIS HAS BEEN TESTED')\n);\n";

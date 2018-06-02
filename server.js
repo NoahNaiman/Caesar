@@ -11,12 +11,12 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
-//Server listening
+//Startup server
 app.listen(8080, () => 
 	console.log('Caesar has conquered port 8080!\n')
 );
 
-//Landing
+//Landing page
 app.get('/', (req, res) =>
 	res.render('index')
 );
