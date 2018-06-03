@@ -64,7 +64,7 @@ app.post('/venividivici', (req, res) =>{
 				//Create new route
 				var specifications = JSON.parse(data);
 				if(specifications.hasOwnProperty('start')){
-					makeRoute(newRouteName, data.start);
+					makeRoute(newRouteName, specifications.start);
 					res.send('Request has been processed!');
 				}
 				else{
@@ -77,7 +77,6 @@ app.post('/venividivici', (req, res) =>{
 
 //Recursively delete a folder and its contents
 function deleteFolder(dir){
-	console.log('Deleting!');
 	if(fs.existsSync(path)){
 		fs.readdirSync(dir).forEach(function(file,index){
 			var curPath = dir + "/" + file;

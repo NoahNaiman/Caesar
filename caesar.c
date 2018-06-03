@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
+//Simple string concatenation function
+// char *concat(char* strOne, char* strTwo){
+// 	char ret[1000];
+// 	strcpy(ret, strOne);
+// 	strcat(ret, strTwo);
+// 	printf("RET: %s\n", ret);
+// 	return &ret;
+// }
 
 
 int main(int argc, char const *argv[]){
@@ -12,10 +22,6 @@ int main(int argc, char const *argv[]){
 	//Buffer to hold new express route to be appended
 	char* startOfRoute = "\n\napp.get('/";
 	char* endOfRoute = "', (req, res) =>\n\tres.send('THIS HAS BEEN TESTED')\n);\n";
-
-	//Commands to navigate for starting servers
-	char *enterDirectoryArgv[2] = {"uploads/" + argv[1], NULL};
-	char* exitDirectoryArgv[2] = {"../..", NULL};
 
 	//Open server for appending
 	server = fopen("server.js", "a");
@@ -35,10 +41,13 @@ int main(int argc, char const *argv[]){
 	fputs(endOfRoute, server);
 
 	//Execute any necessary commands
-	if(strcmp(argv[2], "none") == 0){
-		execv("cd", enterDirectoryArgv);
-		execv(argv[2], NULL);
-		execv("cd", exitDirectoryArgv);
+	if(strcmp(argv[2], "none") != 0){
+
+		// char fullEnterDirectory[1000];
+		// strcpy(fullEnterDirectory, enterDirectory);
+		// strcat(fullEnterDirectory, argv[1]);
+
+		system("touch uploads/MyProj/newTest.txt");
 	}
 
 	//Close server
