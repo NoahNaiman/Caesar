@@ -26,41 +26,58 @@ app.post('/venividivici', (req, res) =>{
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
+	var dir;
 
-	//Create new routes
+	//Create project directory
 	form.on('field', function(name, field){
 		if(name == 'project'){
-			//Check if project folder already exists
-			var dir = path.join(__dirname, 'uploads', field);
+			//Sets global variables for later use
+			newRouteName = field;
+			dir = path.join(__dirname, 'uploads', field);
 
-			//Check if project directory exists already.
+			//Check synchronously if project directory exists already.
 			if(fs.existsSync(dir)){
 				deleteFolder(dir);
 			}
 
-			//Create new project directory
-			fs.mkdir(dir, ()=>{return null;});
-
-			//Save files to project folder
-			form.on('fileBegin', function(name, file){
-				file.path = path.join(dir, file.name);
-			});
-
-			//Create express route for project
-			exec.execFile('./caesar', [field], (error, stdout, stderr) =>{
-				if(error){
-					throw error;
-				}
-				console.log(stdout);
+			//Asynchronously create new project directory
+			fs.mkdir(dir, ()=>{
+				return null;
 			});
 		}
 	});
-	//Redirect on process finishing
-	res.send('Request has been processed!')
+
+	//Save files to project directory
+	form.on('fileBegin', function(name, file){
+		file.path = path.join(dir, file.name);
+		console.log(file.name + ' saved.');
+	});
+
+	//Create express route for project, then redirects
+	form.on('end', () =>{
+		fs.readFile(path.join(dir, 'specs.json'), (error, data)=>{
+			if(error){
+				//Error with specs.json file
+				res.send('Sorry, please double check that your specs.json file is in the right place.');
+			}
+			else{
+				//Create new route
+				var specifications = JSON.parse(data);
+				if(specifications.hasOwnProperty('start')){
+					makeRoute(newRouteName, data.start);
+					res.send('Request has been processed!');
+				}
+				else{
+					res.send('Please make sure your specs.json has all the right data!');
+				}
+			}
+		})
+	});
 });
 
 //Recursively delete a folder and its contents
 function deleteFolder(dir){
+	console.log('Deleting!');
 	if(fs.existsSync(path)){
 		fs.readdirSync(dir).forEach(function(file,index){
 			var curPath = dir + "/" + file;
@@ -74,3 +91,13 @@ function deleteFolder(dir){
 		fs.rmdirSync(dir);
 	}
 };
+
+//Create express route for project
+function makeRoute(routeName, startCommand){
+	exec.execFile('./caesar', [routeName, startCommand], (error, stdout, stderr) =>{
+		if(error){
+			throw error;
+		}
+		console.log(stdout);
+	});
+}
