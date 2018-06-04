@@ -2,7 +2,7 @@
 
 <div
 align="center">
-⚔️:european_castle:⚔️
+:ring:🧙‍♂️:ring:
 </div>
 
 <div align="center">
