@@ -6,17 +6,17 @@ const fs = require('fs');
 const formidable = require('formidable');
 const path = require('path');
 
-//Environment setup
-const port = process.env.PORT || 3000;
-
 //View engine setup
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
+const port = process.env.PORT || 3000;
+var portNet = [port];
+
 //Startup server
 app.listen(port, () => 
-	console.log('\nCaesar has conquered port ' + port + '!\n')
+	console.log(`\nCaesar has conquered port ${port}!\n`)
 );
 
 //Landing page
@@ -26,6 +26,7 @@ app.get('/', (req, res) =>
 
 //Veni, vidi, vici
 app.post('/venividivici', (req, res) =>{
+	console.log("Hello");
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
@@ -67,8 +68,10 @@ app.post('/venividivici', (req, res) =>{
 				//Create new route
 				var specifications = JSON.parse(data);
 				if(specifications.hasOwnProperty('start')){
-					fs.readFile(path.join(dir, ''))
-					makeRoute(newRouteName, specifications.start);
+					if(specifications.start != 'none'){
+						portNet.push(parseInt(portNet.length) + parseInt(port));
+					}
+					enlist(newRouteName, specifications.start, portNet[portNet.length-1]);
 					res.send('Request has been processed!');
 				}
 				else{
@@ -95,9 +98,9 @@ function deleteFolder(dir){
 	}
 };
 
-//Create express route for project
-function makeRoute(routeName, startCommand){
-	exec.execFile('./caesar', [routeName, startCommand], (error, stdout, stderr) =>{
+//Create express routes and/or launches project for project
+function enlist(routeName, startCommand, launchPort){
+	exec.execFile('./caesar', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
 		if(error){
 			throw error;
 		}

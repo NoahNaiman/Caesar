@@ -4,7 +4,7 @@
   "description": "Project hosting service for BostonHacks",
   "main": "server.js",
   "scripts": {
-    "start": "make && node server.js",
+    "start": "make && PORT=3000 node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

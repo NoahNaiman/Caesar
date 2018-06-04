@@ -30,21 +30,27 @@ int main(int argc, char const *argv[]){
 	fputs(argv[1], server);
 	fputs(endOfRoute, server);
 
+	//Close server
+	fclose(server);
+	printf("Server has been closed for writing.\n");
+
+
 	//Execute any necessary commands
 	if(strcmp(argv[2], "none") != 0){
+
+		printf("Launching %s.\n", argv[1]);
 
 		//Set up start command
 		char toExecute[1000] = "cd uploads/";
 		strcat(toExecute, argv[1]);
-		strcat(toExecute, "; ");
+		strcat(toExecute, "; PORT=");
+		strcat(toExecute, argv[3]);
+		strcat(toExecute, " ");
 		strcat(toExecute, argv[2]);
+		printf("%s\n", toExecute);
 
-		system(toExecute);
+		// system(toExecute);
 	}
-
-	//Close server
-	fclose(server);
-	printf("Server has been closed for writing.\n");
 
 	return 0;
 }
