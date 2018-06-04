@@ -6,14 +6,17 @@ const fs = require('fs');
 const formidable = require('formidable');
 const path = require('path');
 
+//Environment setup
+const port = process.env.port || 3000;
+
 //View engine setup
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 //Startup server
-app.listen(8080, () => 
-	console.log('\nCaesar has conquered port 8080!\n')
+app.listen(port, () => 
+	console.log('\nCaesar has conquered port ' + port + '!\n')
 );
 
 //Landing page
@@ -64,6 +67,7 @@ app.post('/venividivici', (req, res) =>{
 				//Create new route
 				var specifications = JSON.parse(data);
 				if(specifications.hasOwnProperty('start')){
+					fs.readFile(path.join(dir, ''))
 					makeRoute(newRouteName, specifications.start);
 					res.send('Request has been processed!');
 				}
@@ -100,3 +104,5 @@ function makeRoute(routeName, startCommand){
 		console.log(stdout);
 	});
 }
+
+//Dynamically appended static webpages
