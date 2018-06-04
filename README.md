@@ -2,7 +2,7 @@
 
 <div
 align="center">
-:⚔️::nut_and_bolt::⚔️:
+⚔️european_castle:⚔️
 </div>
 
 <div align="center">
@@ -11,7 +11,7 @@ align="center">
 </div>
 
 
-
+<!-- 
 # Table of Contents
 - [Philosophy](#philosophy)
 - [Data Structures](#data-structures)
@@ -123,3 +123,4 @@ Included methods are:
 
 
 _Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/SinglyLinkedList.java
+ -->
