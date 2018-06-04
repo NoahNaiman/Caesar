@@ -1,4 +1,4 @@
-<h1 align="center">Caesar</h1>
+<h1 align="center">Sauron</h1>
 
 <div
 align="center">
@@ -6,7 +6,7 @@ align="center">
 </div>
 
 <div align="center">
-	<strong>Venite, videte, vincite</strong><br>
+	<strong>One server to rule them all</strong><br>
 	A metamorphic server to make project hosting easy
 </div>
 

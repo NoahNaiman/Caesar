@@ -16,7 +16,7 @@ var portNet = [port];
 
 //Startup server
 app.listen(port, () => 
-	console.log(`\nCaesar has conquered port ${port}!\n`)
+	console.log(`\nThe eye of Sauron is watching port ${port}!\n`)
 );
 
 //Landing page
@@ -25,7 +25,7 @@ app.get('/', (req, res) =>
 );
 
 //Veni, vidi, vici
-app.post('/venividivici', (req, res) =>{
+app.post('/landofmordor', (req, res) =>{
 	console.log("Hello");
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
@@ -100,7 +100,7 @@ function deleteFolder(dir){
 
 //Create express routes and/or launches project for project
 function enlist(routeName, startCommand, launchPort){
-	exec.execFile('./caesar', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
+	exec.execFile('./sauron', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
 		if(error){
 			throw error;
 		}

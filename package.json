@@ -1,5 +1,5 @@
 {
-  "name": "Caesar",
+  "name": "Sauron",
   "version": "1.0.0",
   "description": "Project hosting service for BostonHacks",
   "main": "server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoahNaiman/Caesar.git"
+    "url": "git+https://github.com/NoahNaiman/Sauron.git"
   },
   "author": "Noah Naiman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NoahNaiman/Caesar/issues"
+    "url": "https://github.com/NoahNaiman/Sauron/issues"
   },
-  "homepage": "https://github.com/NoahNaiman/Caesar#readme",
+  "homepage": "https://github.com/NoahNaiman/Sauron#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",

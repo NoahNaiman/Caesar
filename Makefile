@@ -1,12 +1,12 @@
-#Makefile to build caesar.c and any helper programs needed
+#Makefile to build sauron.c and any helper programs needed
 
 CC = gcc
 CFLAGS = -Wall -o
 
-all: clean caesar
+all: clean sauron
 
-caesar:
-	$(CC) $(CFLAGS) caesar caesar.c
+sauron:
+	$(CC) $(CFLAGS) sauron sauron.c
 
 clean:
-	rm -f *.o caesar
+	rm -f *.o sauron
