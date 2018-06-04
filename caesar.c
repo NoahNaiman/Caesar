@@ -4,16 +4,6 @@
 #include <string.h>
 #include <unistd.h>
 
-//Simple string concatenation function
-// char *concat(char* strOne, char* strTwo){
-// 	char ret[1000];
-// 	strcpy(ret, strOne);
-// 	strcat(ret, strTwo);
-// 	printf("RET: %s\n", ret);
-// 	return &ret;
-// }
-
-
 int main(int argc, char const *argv[]){
 
 	//Server file to append to
@@ -43,11 +33,13 @@ int main(int argc, char const *argv[]){
 	//Execute any necessary commands
 	if(strcmp(argv[2], "none") != 0){
 
-		// char fullEnterDirectory[1000];
-		// strcpy(fullEnterDirectory, enterDirectory);
-		// strcat(fullEnterDirectory, argv[1]);
+		//Set up start command
+		char toExecute[1000] = "cd uploads/";
+		strcat(toExecute, argv[1]);
+		strcat(toExecute, "; ");
+		strcat(toExecute, argv[2]);
 
-		system("touch uploads/MyProj/newTest.txt");
+		system(toExecute);
 	}
 
 	//Close server
