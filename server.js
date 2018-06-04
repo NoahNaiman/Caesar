@@ -7,7 +7,7 @@ const formidable = require('formidable');
 const path = require('path');
 
 //Environment setup
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 //View engine setup
 app.set('view engine', 'pug');
