@@ -16,7 +16,7 @@ var portNet = [port];
 
 //Startup server
 app.listen(port, () => 
-	console.log(`\nThe eye of Sauron is watching port ${port}!\n`)
+	console.log(`\nThe eye of Sauron watches port ${port}!\n`)
 );
 
 //Landing page
@@ -71,7 +71,7 @@ app.post('/landofmordor', (req, res) =>{
 					if(specifications.start != 'none'){
 						portNet.push(parseInt(portNet.length) + parseInt(port));
 					}
-					enlist(newRouteName, specifications.start, portNet[portNet.length-1]);
+					forge(newRouteName, specifications.start, portNet[portNet.length-1]);
 					res.send('Request has been processed!');
 				}
 				else{
@@ -99,7 +99,7 @@ function deleteFolder(dir){
 };
 
 //Create express routes and/or launches project for project
-function enlist(routeName, startCommand, launchPort){
+function forge(routeName, startCommand, launchPort){
 	exec.execFile('./sauron', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
 		if(error){
 			throw error;
