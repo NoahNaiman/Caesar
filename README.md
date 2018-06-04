@@ -2,12 +2,12 @@
 
 <div
 align="center">
-⚔️european_castle:⚔️
+⚔️:european_castle:⚔️
 </div>
 
 <div align="center">
 	<strong>Venite, videte, vincite</strong><br>
-	A metamorphic server making project hosting easier than ever
+	A metamorphic server to make project hosting easy
 </div>
 
 
