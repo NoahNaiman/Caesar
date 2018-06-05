@@ -26,7 +26,6 @@ app.get('/', (req, res) =>
 
 //Veni, vidi, vici
 app.post('/landofmordor', (req, res) =>{
-	console.log("Hello");
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
