@@ -67,7 +67,6 @@ app.post('/landofmordor', (req, res) =>{
 				//Pare specs.json
 				var specifications = JSON.parse(data);
 				if(specifications.hasOwnProperty('start') && specifications.hasOwnProperty('main')){
-					console.log(specifications.main);
 					//If start command exists
 					if(specifications.start != 'none'){
 						//Append to processes.txt
