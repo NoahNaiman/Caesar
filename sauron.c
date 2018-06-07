@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]){
 
 	//Open server for appending
 	server = fopen("server.js", "a");
-	printf("Server has been opened for appending.\n");
+	printf("Server has been opened for appending\n");
 
 	if(server == NULL){
 		perror("Error: ");
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]){
 	}
 
 	//Append to server
-	printf("Writing to server.\n");
+	printf("Writing to server\n");
 
 	fputs(startOfRoute, server);
 	fputs(argv[1], server);
@@ -32,13 +32,13 @@ int main(int argc, char const *argv[]){
 
 	//Close server
 	fclose(server);
-	printf("Server has been closed for writing.\n");
+	printf("Server has been closed for writing\n");
 
 
 	//Execute any necessary commands
 	if(strcmp(argv[2], "none") != 0){
 
-		printf("Launching %s.\n", argv[1]);
+		printf("Launching %s\n", argv[1]);
 
 		//Set up start command
 		char toExecute[1000] = "cd uploads/";
@@ -49,7 +49,7 @@ int main(int argc, char const *argv[]){
 		strcat(toExecute, argv[2]);
 		printf("%s\n", toExecute);
 
-		// system(toExecute);
+		system(toExecute);
 	}
 
 	return 0;

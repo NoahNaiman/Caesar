@@ -107,4 +107,4 @@ function forge(routeName, startCommand, launchPort){
 	});
 }
 
-//Dynamically appended static webpages
+//Dynamically appended redirects
