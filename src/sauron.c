@@ -4,6 +4,14 @@
 #include <string.h>
 #include <unistd.h>
 
+char* concatenate(char* dest, char* src){
+	while(*dest){
+		dest++;
+	}
+	while(*dest++ = *src++);
+	return --dest;
+}
+
 int main(int argc, char const *argv[]){
 
 	//Server file to append to
@@ -42,11 +50,12 @@ int main(int argc, char const *argv[]){
 
 		//Set up start command
 		char toExecute[1000] = "cd ../uploads/";
-		strcat(toExecute, argv[1]);
-		strcat(toExecute, "; PORT=");
-		strcat(toExecute, argv[3]);
-		strcat(toExecute, " ");
-		strcat(toExecute, argv[2]);
+		char *pointer = toExecute;
+		pointer = concatenate(pointer, argv[1]);
+		pointer = concatenate(pointer, "; PORT=");
+		pointer = concatenate(pointer, argv[3]);
+		pointer = concatenate(pointer, " ");
+		pointer = concatenate(pointer, argv[2]);
 		printf("%s\n", toExecute);
 
 		system(toExecute);
