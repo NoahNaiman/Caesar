@@ -76,7 +76,7 @@ app.post('/landofmordor', (req, res) =>{
 						portNet.push(parseInt(portNet.length) + parseInt(port));
 					}
 					//Create new path and launch processes
-					forge(newRouteName, specifications.start, portNet[portNet.length-1], specifications.main);
+					forge(newRouteName, specifications.start, portNet[portNet.length-1]);
 					res.send('Request has been processed!');
 				}
 				else{
@@ -105,7 +105,7 @@ function deleteFolder(dir){
 
 //Create express routes and/or launches project for project
 function forge(routeName, startCommand, launchPort){
-	exec.execFile('./sauron', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
+	exec.execFile('src/sauron', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
 		if(error){
 			throw error;
 		}

@@ -6,7 +6,7 @@ CFLAGS = -Wall -o
 all: clean sauron
 
 sauron:
-	$(CC) $(CFLAGS) sauron sauron.c
+	$(CC) $(CFLAGS) src/sauron src/sauron.c
 
 clean:
-	rm -f *.o sauron
+	rm -f src/*.o src/sauron

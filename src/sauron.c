@@ -41,7 +41,7 @@ int main(int argc, char const *argv[]){
 		printf("Launching %s\n", argv[1]);
 
 		//Set up start command
-		char toExecute[1000] = "cd uploads/";
+		char toExecute[1000] = "cd ../uploads/";
 		strcat(toExecute, argv[1]);
 		strcat(toExecute, "; PORT=");
 		strcat(toExecute, argv[3]);
