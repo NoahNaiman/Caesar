@@ -36,7 +36,7 @@ app.post('/landofmordor', (req, res) =>{
 		if(name == 'project'){
 			//Sets global variables for later use
 			newRouteName = field;
-			dir = path.join(__dirname, 'uploads', field);
+			dir = path.join('uploads', field);
 
 			//Check synchronously if project directory exists already.
 			if(fs.existsSync(dir)){
@@ -64,13 +64,19 @@ app.post('/landofmordor', (req, res) =>{
 				res.send('Sorry, please double check that your specs.json file is in the right place.');
 			}
 			else{
-				//Create new route
+				//Pare specs.json
 				var specifications = JSON.parse(data);
-				if(specifications.hasOwnProperty('start')){
+				if(specifications.hasOwnProperty('start') && specifications.hasOwnProperty('main')){
+					console.log(specifications.main);
+					//If start command exists
 					if(specifications.start != 'none'){
+						//Append to processes.txt
+						fs.appendFileSync('processes.txt', (specifications.main +'\n'));
+						//Add port number to portNext
 						portNet.push(parseInt(portNet.length) + parseInt(port));
 					}
-					forge(newRouteName, specifications.start, portNet[portNet.length-1]);
+					//Create new path and launch processes
+					forge(newRouteName, specifications.start, portNet[portNet.length-1], specifications.main);
 					res.send('Request has been processed!');
 				}
 				else{
