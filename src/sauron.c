@@ -18,8 +18,14 @@ int main(int argc, char const *argv[]){
 	FILE *server;
 
 	//Buffer to hold new express route to be appended
-	char* startOfRoute = "\n\napp.get('/";
-	char* endOfRoute = "', (req, res) =>\n\tres.send('THIS HAS BEEN TESTED')\n);\n";
+	char newRoute[1000] = "\n\napp.get('/";
+
+	//Concatenate new route together
+	char *routePointer = newRoute;
+	routePointer = concatenate(routePointer, argv[1]);
+	routePointer = concatenate(routePointer, "', (req, res) =>\n\tres.send('localhost:");
+	routePointer = concatenate(routePointer, argv[3]);
+	routePointer = concatenate(routePointer, "')\n);\n");
 
 	//Open server for appending
 	server = fopen("server.js", "a");
@@ -34,9 +40,7 @@ int main(int argc, char const *argv[]){
 	//Append to server
 	printf("Writing to server\n");
 
-	fputs(startOfRoute, server);
-	fputs(argv[1], server);
-	fputs(endOfRoute, server);
+	fputs(newRoute, server);
 
 	//Close server
 	fclose(server);
@@ -50,13 +54,12 @@ int main(int argc, char const *argv[]){
 
 		//Set up start command
 		char toExecute[1000] = "cd ../uploads/";
-		char *pointer = toExecute;
-		pointer = concatenate(pointer, argv[1]);
-		pointer = concatenate(pointer, "; PORT=");
-		pointer = concatenate(pointer, argv[3]);
-		pointer = concatenate(pointer, " ");
-		pointer = concatenate(pointer, argv[2]);
-		printf("%s\n", toExecute);
+		char *executePointer = toExecute;
+		executePointer = concatenate(executePointer, argv[1]);
+		executePointer = concatenate(executePointer, "; PORT=");
+		executePointer = concatenate(executePointer, argv[3]);
+		executePointer = concatenate(executePointer, " ");
+		executePointer = concatenate(executePointer, argv[2]);
 
 		system(toExecute);
 	}

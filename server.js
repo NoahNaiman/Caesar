@@ -113,3 +113,6 @@ function forge(routeName, startCommand, launchPort){
 }
 
 //Dynamically appended redirects
+app.get('/MyProj', (req, res) =>
+	res.send('localhost:3001')
+);
