@@ -90,6 +90,12 @@ app.post('/landofmordor', (req, res) =>{
 	});
 });
 
+process.on('SIGINT', function() {
+  //fs.closeSync(fs.openSync('src/processes.txt', 'w'));
+  fs.writeFileSync('src/processes.txt', '');
+  process.exit(0);
+});
+
 //Recursively delete a folder and its contents
 function deleteFolder(dir){
 	if(fs.existsSync(path)){

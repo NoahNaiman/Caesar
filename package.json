@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "make && PORT=3000 node server.js",
-    "stop": "echo '' > src/processes.txt;",
+    "stop": "echo '' > src/processes.txt; pkill -9 Sauron",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
