@@ -1,3 +1,6 @@
+//Setup process title
+process.title = "Sauron"
+
 //Dependecy imports
 const exec = require('child_process');
 const express = require('express');
@@ -11,6 +14,7 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
+//Setup port and port nets
 const port = process.env.PORT || 3000;
 var portNet = [port];
 
@@ -70,7 +74,7 @@ app.post('/landofmordor', (req, res) =>{
 					//If start command exists
 					if(specifications.start != 'none'){
 						//Append to processes.txt
-						fs.appendFileSync('processes.txt', ('../uploads/' + specifications.project + '/' + specifications.start + '\n'));
+						fs.appendFileSync('src/processes.txt', ('../uploads/' + specifications.project + '/' + specifications.start + '\n'));
 						//Add port number to portNext
 						portNet.push(parseInt(portNet.length) + parseInt(port));
 					}
