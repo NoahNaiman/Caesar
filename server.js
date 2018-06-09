@@ -66,11 +66,11 @@ app.post('/landofmordor', (req, res) =>{
 			else{
 				//Pare specs.json
 				var specifications = JSON.parse(data);
-				if(specifications.hasOwnProperty('start') && specifications.hasOwnProperty('main')){
+				if(specifications.hasOwnProperty('start')){
 					//If start command exists
 					if(specifications.start != 'none'){
 						//Append to processes.txt
-						fs.appendFileSync('processes.txt', (specifications.main +'\n'));
+						fs.appendFileSync('processes.txt', ('../uploads/' + specifications.project + '/' + specifications.start + '\n'));
 						//Add port number to portNext
 						portNet.push(parseInt(portNet.length) + parseInt(port));
 					}
@@ -113,6 +113,3 @@ function forge(routeName, startCommand, launchPort){
 }
 
 //Dynamically appended redirects
-app.get('/MyProj', (req, res) =>
-	res.send('localhost:3001')
-);

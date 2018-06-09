@@ -60,6 +60,7 @@ int main(int argc, char const *argv[]){
 		executePointer = concatenate(executePointer, argv[3]);
 		executePointer = concatenate(executePointer, " ");
 		executePointer = concatenate(executePointer, argv[2]);
+		printf("%s\n", toExecute);
 
 		system(toExecute);
 	}
