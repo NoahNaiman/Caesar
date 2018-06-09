@@ -12,6 +12,9 @@ html
 				label(for='email') Email:
 					input#email(type='email', name='email', placeholder='youremail@email.com' required)
 			div.form-field
+				label(for='start') Launch Command:
+					input#project(type='text', name='start', placeholder='e.g. npm start, python projectName')
+			div.form-field
 				label(for='files') Files:
 					input#files(type='file', name='files', placeholder='Upload files here', multiple required)
 			input(type='submit', value='Submit')

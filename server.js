@@ -33,7 +33,6 @@ app.post('/landofmordor', (req, res) =>{
 	//Parse incoming form data
 	var form = new formidable.IncomingForm();
 	form.parse(req);
-	var dir;
 
 	//Create project directory
 	form.on('field', function(name, field){
@@ -52,6 +51,10 @@ app.post('/landofmordor', (req, res) =>{
 				return null;
 			});
 		}
+		else if(name == 'start'){
+			//Set starter for later use
+			starter = field;
+		}
 	});
 
 	//Save files to project directory
@@ -62,36 +65,20 @@ app.post('/landofmordor', (req, res) =>{
 
 	//Create express route for project, then redirects
 	form.on('end', () =>{
-		fs.readFile(path.join(dir, 'specs.json'), (error, data)=>{
-			if(error){
-				//Error with specs.json file
-				res.send('Sorry, please double check that your specs.json file is in the right place.');
-			}
-			else{
-				//Pare specs.json
-				var specifications = JSON.parse(data);
-				if(specifications.hasOwnProperty('start')){
-					//If start command exists
-					if(specifications.start != 'none'){
-						//Append to processes.txt
-						fs.appendFileSync('src/processes.txt', ('../uploads/' + specifications.project + '/' + specifications.start + '\n'));
-						//Add port number to portNext
-						portNet.push(parseInt(portNet.length) + parseInt(port));
-					}
-					//Create new path and launch processes
-					forge(newRouteName, specifications.start, portNet[portNet.length-1]);
-					res.send('Request has been processed!');
-				}
-				else{
-					res.send('Please make sure your specs.json has all the right data!');
-				}
-			}
-		})
+		if(starter != 'none' && starter != 'undefined'){
+			//Append to processes.txt
+			fs.appendFileSync('src/processes.txt', ('../' + dir + '/' + starter + '\n'));
+			//Add port number to portNext
+			portNet.push(parseInt(portNet.length) + parseInt(port));
+		}
+		
+		//Create new path and launch processes
+		forge(newRouteName, starter, portNet[portNet.length-1]);
+		res.send('Request has been processed!');
 	});
 });
 
-process.on('SIGINT', function() {
-  //fs.closeSync(fs.openSync('src/processes.txt', 'w'));
+process.on('SIGINT', ()=>{
   fs.writeFileSync('src/processes.txt', '');
   process.exit(0);
 });
@@ -123,3 +110,7 @@ function forge(routeName, startCommand, launchPort){
 }
 
 //Dynamically appended redirects
+
+app.get('/MyProj', (req, res) =>
+	res.send('localhost:3001')
+);
