@@ -71,10 +71,10 @@ app.post('/landofmordor', (req, res) =>{
 			//Add port number to portNext
 			portNet.push(parseInt(portNet.length) + parseInt(port));
 		}
-		
+
 		//Create new path and launch processes
 		forge(newRouteName, starter, portNet[portNet.length-1]);
-		res.send('Request has been processed!');
+		res.render('list');
 	});
 });
 
@@ -110,7 +110,3 @@ function forge(routeName, startCommand, launchPort){
 }
 
 //Dynamically appended redirects
-
-app.get('/MyProj', (req, res) =>
-	res.send('localhost:3001')
-);

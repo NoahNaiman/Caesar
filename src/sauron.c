@@ -8,7 +8,7 @@ char* concatenate(char* dest, char* src){
 	while(*dest){
 		dest++;
 	}
-	while(*dest++ = *src++);
+	while((*dest++ = *src++));
 	return --dest;
 }
 
@@ -22,9 +22,9 @@ int main(int argc, char const *argv[]){
 
 	//Concatenate new route together
 	char *routePointer = newRoute;
-	routePointer = concatenate(routePointer, argv[1]);
+	routePointer = concatenate(routePointer, (char *)argv[1]);
 	routePointer = concatenate(routePointer, "', (req, res) =>\n\tres.send('localhost:");
-	routePointer = concatenate(routePointer, argv[3]);
+	routePointer = concatenate(routePointer, (char *) argv[3]);
 	routePointer = concatenate(routePointer, "')\n);\n");
 
 	//Open server for appending
@@ -55,11 +55,11 @@ int main(int argc, char const *argv[]){
 		//Set up start command
 		char toExecute[1000] = "cd ../uploads/";
 		char *executePointer = toExecute;
-		executePointer = concatenate(executePointer, argv[1]);
+		executePointer = concatenate(executePointer, (char *) argv[1]);
 		executePointer = concatenate(executePointer, "; PORT=");
-		executePointer = concatenate(executePointer, argv[3]);
+		executePointer = concatenate(executePointer, (char *) argv[3]);
 		executePointer = concatenate(executePointer, " ");
-		executePointer = concatenate(executePointer, argv[2]);
+		executePointer = concatenate(executePointer, (char *) argv[2]);
 		printf("%s\n", toExecute);
 
 		system(toExecute);
