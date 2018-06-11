@@ -13,10 +13,4 @@ echo 'Cleaning up list.pug'
 
 sed -n 1,8p views/list.pug > views/list.pug.tmp && mv views/list.pug.tmp views/list.pug
 
-read -p 'Would you like to delete anything in uploads? [y/n] ' cleanUploads
-
-if [ "$cleanUploads" = "y" ]; then
-	`rm -rf uploads/*`
-fi
-
-echo 'Cleanup complete, safely exited.'
+echo 'Cleanup completed, safe exit complete"

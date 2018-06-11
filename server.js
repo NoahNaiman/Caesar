@@ -111,7 +111,6 @@ function forge(routeName, startCommand, launchPort){
 
 //Cleanup files on safe exit
 function mtDoom(){
-	console.log("Exitngt;oijdf");
 	exec.execFile('src/gollum.sh', (error, stdout)=>{
 		if(error){
 			throw error;
