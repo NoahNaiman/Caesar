@@ -1,20 +1,22 @@
 #!/bin/bash
 #Cleanup file for Sauron on safe exit
 
-echo 'Initiating cleanup of server.js';
+echo 'Cleaning up server.js'
 
-sed -n 1,$(awk '/Dynamically appended redirects/{print NR}'
-server.js)p server.js > ../server.js;
+sed -n 1,$(awk '/Dynamically appended redirects/{print NR}' server.js)p server.js > server.js.tmp && mv server.js.tmp server.js
 
-echo 'Initiating cleanup of list.pug';
+echo 'Cleaning up processes.txt'
 
-sed -n 1,8p views/list.pug > views/list.pug;
+echo '' > src/processes.txt
+
+echo 'Cleaning up list.pug'
+
+sed -n 1,8p views/list.pug > views/list.pug.tmp && mv views/list.pug.tmp views/list.pug
 
 read -p 'Would you like to delete anything in uploads? [y/n] ' cleanUploads
 
-if [$(echo "$cleanUploads" |tr [:upper:] [:lower:]) = 'y'] || [$(echo "$cleanUploads" | tr [:upper:] [:lower:]) = 'yes'];
-then
-	rm -rf uploads/*
+if [ "$cleanUploads" = "y" ]; then
+	`rm -rf uploads/*`
 fi
 
-echo 'Cleanup complete.';
+echo 'Cleanup complete, safely exited.'

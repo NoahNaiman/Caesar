@@ -79,7 +79,7 @@ app.post('/landofmordor', (req, res) =>{
 });
 
 process.on('SIGINT', ()=>{
-  fs.writeFileSync('src/processes.txt', '');
+  mtDoom();
   process.exit(0);
 });
 
@@ -101,7 +101,18 @@ function deleteFolder(dir){
 
 //Create express routes and/or launches project for project
 function forge(routeName, startCommand, launchPort){
-	exec.execFile('src/sauron', [routeName, startCommand, launchPort], (error, stdout, stderr) =>{
+	exec.execFile('src/sauron', [routeName, startCommand, launchPort], (error, stdout) =>{
+		if(error){
+			throw error;
+		}
+		console.log(stdout);
+	});
+}
+
+//Cleanup files on safe exit
+function mtDoom(){
+	console.log("Exitngt;oijdf");
+	exec.execFile('src/gollum.sh', (error, stdout)=>{
 		if(error){
 			throw error;
 		}
