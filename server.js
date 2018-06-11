@@ -67,7 +67,7 @@ app.post('/landofmordor', (req, res) =>{
 	form.on('end', () =>{
 		if(starter != 'none' && starter != 'undefined'){
 			//Append to processes.txt
-			fs.appendFileSync('src/processes.txt', ('../' + dir + '/' + starter + '\n'));
+			fs.appendFileSync('processes.txt', ('../' + dir + '/' + starter + '\n'));
 			//Add port number to portNext
 			portNet.push(parseInt(portNet.length) + parseInt(port));
 		}
@@ -101,7 +101,7 @@ function deleteFolder(dir){
 
 //Create express routes and/or launches project for project
 function forge(routeName, startCommand, launchPort){
-	exec.execFile('src/sauron', [routeName, startCommand, launchPort], (error, stdout) =>{
+	exec.execFile('bin/sauron', [routeName, startCommand, launchPort], (error, stdout) =>{
 		if(error){
 			throw error;
 		}

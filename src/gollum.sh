@@ -7,7 +7,7 @@ sed -n 1,$(awk '/Dynamically appended redirects/{print NR}' server.js)p server.j
 
 echo 'Cleaning up processes.txt'
 
-echo '' > src/processes.txt
+echo '' > processes.txt
 
 echo 'Cleaning up list.pug'
 
