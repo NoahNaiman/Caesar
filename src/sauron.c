@@ -21,6 +21,7 @@ int main(int argc, char const *argv[]){
 	server = fopen("server.js", "a");
 	printf("Server has been opened for appending\n");
 
+	//Exit if error with server
 	if(server == NULL){
 		perror("Error: ");
 		printf("Terminating!\n");
@@ -48,7 +49,6 @@ int main(int argc, char const *argv[]){
 		//Close server
 		fclose(server);
 		printf("Server has been closed for writing\n");
-
 
 		printf("Launching %s\n", argv[1]);
 
@@ -83,8 +83,43 @@ int main(int argc, char const *argv[]){
 		//Close server
 		fclose(server);
 		printf("Server has been closed for writing\n");
-
 	}
+
+	//List of hosted projects that can be redirected to
+	FILE *projectList;
+
+	//Open list.pug for appending
+	projectList = fopen('views/list.pug', 'a');
+	printf("Projects list has been opened for appending\n");
+
+	//Exit if error with projectList
+	if(projectList == NULL){
+		perror("Error: ");
+		printf("Terminating!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	//Buffer to hold new express route to be appended
+	char newButton[1000] = "\n\t\tform(action='/";
+
+	//Concatenate new route together
+	char *buttonPointer = newButton;
+	buttonPointer = concatenate(buttonPointer, (char *)argv[1]);
+	buttonPointer = concatenate(buttonPointer, "', method='GET')\n\t\t\tdiv.project-button\n\t\t\t\tinput(type='submit', value='");
+	buttonPointer = concatenate(buttonPointer, (char *) argv[1]);
+	buttonPointer = concatenate(buttonPointer, "')\n)");
+
+	//Append to server
+	printf("Writing to project list\n");
+
+	fputs(newButton, projectList);
+
+	//Close server
+	fclose(projectList);
+	printf("Projects list has been closed for writing\n");
+
+	//Flush stdout to console
+	fflush(stdout);
 
 	return 0;
 }
