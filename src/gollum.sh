@@ -4,7 +4,8 @@
 echo 'Killing children processes'
 
 while read line; do
-	kill $(ps | awk "/$line/{print $1}")
+	echo $line
+	ps | awk '/'$line'/{kill $1}'
 done < processes.txt
 
 echo 'Cleaning up processes.txt'
