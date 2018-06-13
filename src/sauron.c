@@ -120,7 +120,7 @@ int main(int argc, char const *argv[]){
 	}
 
 	//Flush stdout to console
-	fflush(stdout);
+	//fflush(stdout);
 
 	return 0;
 }

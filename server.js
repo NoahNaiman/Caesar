@@ -120,8 +120,3 @@ function mtDoom(){
 }
 
 //Dynamically appended redirects
-
-
-app.get('/AProj', (req, res) =>
-	res.send('localhost:3001')
-);
