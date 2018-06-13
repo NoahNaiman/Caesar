@@ -13,4 +13,4 @@ echo 'Cleaning up list.pug'
 
 sed -n 1,8p views/list.pug > views/list.pug.tmp && mv views/list.pug.tmp views/list.pug
 
-echo 'Cleanup completed, safe exit complete"
+echo 'Cleanup completed, safe exit complete'

@@ -67,7 +67,7 @@ app.post('/landofmordor', (req, res) =>{
 	form.on('end', () =>{
 		if(starter != 'none' && starter != 'undefined'){
 			//Append to processes.txt
-			fs.appendFileSync('processes.txt', ('../' + dir + '/' + starter + '\n'));
+			fs.appendFileSync('src/processes.txt', ('../' + dir + '/' + starter + '\n'));
 			//Add port number to portNext
 			portNet.push(parseInt(portNet.length) + parseInt(port));
 		}
@@ -120,3 +120,8 @@ function mtDoom(){
 }
 
 //Dynamically appended redirects
+
+
+app.get('/AProj', (req, res) =>
+	res.send('localhost:3001')
+);
