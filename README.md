@@ -58,7 +58,6 @@ Sauron runs by default on localhost 3000. Naviagte there and you will see this f
 
 ![Alt text](/public/images/SauronForm.png?raw=true)
 
-
 ### Project Name
 A name given to your project, must be unique from any other uploaded project or it will be overwritten.
 
@@ -76,20 +75,20 @@ must be in the same folder.
 
 # FAQ
 
-## Why is it called Sauron?
+### Why is it called Sauron?
 Because it is one server to rule them.
 
-## So...it's AWS Elastic Beanstalk?
+### So...it's AWS Elastic Beanstalk?
 To an extent it is similar. I value being able to use cloud tools, and in a real work environment would certainly
 have chosen to use them over writing the entire thing from scratch. However this was a personal project I wanted
 to learn from, and I really think I did.
 
-## Isn't it sort of insecure to let people upload whatever they want?
+### Isn't it sort of insecure to let people upload whatever they want?
 Yes. Were I to use this for production I would add several more authentication methods to make it more secure. While
 I can't control what people upload, some possible ways to mitigate this issue include: adding a database of authenticated
 users, scanning uploaded files for malicious intent, keeping track of resources being used by various processes in case a
 kill is needed for any of them.
 
-## Can I use this for my projects?
+### Can I use this for my projects?
 Abosuletely! Be aware that this is a personal project and therefore not 100% stable. Using it will require heavy tweaking,
 but any suggestions, forks, pull requests, etc. are very welcome!
