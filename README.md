@@ -44,11 +44,9 @@ and I understand not just how but why. And to me that is the important part.
 # Usage
 
 ##Dependencies
-
 If you do not already, make sure to install Nodejs and the Node Package Manager (npm)
 
 ## Download
-
 To download run the following command:
 ```git clone https://github.com/NoahNaiman/Sauron.git```
 Navigate to the newly cloned directory and run:
@@ -57,7 +55,6 @@ Finally, to fire up the server just run:
 ```npm start```
 
 ##The Interface
-
 Sauron runs by default on localhost 3000. Naviagte there and you will see this form:
 ![Alt text](/public/images/SauronForm.png?raw=true)
 
