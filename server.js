@@ -11,6 +11,8 @@ const path = require('path');
 
 //View engine setup
 app.set('view engine', 'pug');
+
+/*UNCOMMENT IF CSS IS ADDED!*/
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
 

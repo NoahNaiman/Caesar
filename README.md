@@ -2,7 +2,7 @@
 
 <div
 align="center">
-:ring:🧙‍♂️:ring:
+:eyes:volcano:ring:
 </div>
 
 <div align="center">
@@ -11,116 +11,87 @@ align="center">
 </div>
 
 
-<!-- 
+
 # Table of Contents
 - [Philosophy](#philosophy)
-- [Data Structures](#data-structures)
+- [Usage](#usage)
+- [FAQ](#faq)
 
 # Philosophy
-Towards the end of my very first technical interview two years ago,
-I was asked about Binary Search Trees. Up until that point 
-I had been getting by through rattling off standard textbook
-answers about everything. But when I was asked to actually implement a very
-basic and essential data structure, I fumbled hard. And it was
-_embarrasing_.
 
-Since then I have become a firm believer in the idea that if
-you truly want to understand something you must take it apart
-and put it back together. What I have tried to do with this
-project is to create a comprehensive collection of Computer
-Science fundamentals. My ultimate goal is to have everything
-from ArrayLists to Zippers implemented in here. Hopefully, at
-the end of it, the nuts and bolts will be second nature.
+I attend a whole bunch of hackathons, They are one of my favorite activities. But time after
+time I find myself using technologies I don't fully understand. And that bothers me to no end!
+Like many a computer scientist before me, not knowing how or why something works keep me up at
+night! And what's worse, sometimes I don't even have a vague idea of the general structure behind
+it. One such example is Amazon's Web Services. Frequently used by programmers, but rarely understood.
 
-This is certainly a personal project, but the code is open
-and I encourage you to take a look and assess my implementations.
-If you feel I could improve something somewhere, please let me
-know!
+A few weeks back my friends and I were discussing the difficulty of blindly following tutorials to
+to quickly host a hackathon project on the cloud. We talked about how nice it would be if hackathons
+had a quick and system wherein hackers upload their projects and the hackathont takes care of hosting.
+But once again, none of us really had any idea of how it would work. So I googled around a little bit
+and, of course, ended up on AWS. Particularly Elastic Beanstalk. All I could think of was, "How the heck
+would that even work?" And thus this project was born. It's certainly not on the same scale, and can't
+come close to providing the same resources, but the general idea is the same.
+
+I wanted to see how it would be possible to create a server that not only modified itself at runtime,
+but also was able to spawn and host other child processes. Further, I wanted to know how the entire
+ecosystem would work together. I know when run it does not look pretty, no nice CSS, but it works
+and I understand not just how but why. And to me that is the important part.
 
 **_Noah Naiman, 2018_**
 
-# Data Structures
 
-## Nodes
+# Usage
 
-### _A Note on Nodes_
-For this project I chose to abstract each type of Node into its
-own seperate class and file. Each Node type inherits from the superclass Node.
-I chose to write each Node seperately instead of built directly into
-larger structures for two main reasons:
+##Dependencies
 
-1. It makes reading my work less cluttered.
-2. As this was a project to deeply learn fundamentals, I wanted to make strong distinctions
-between each Node type.
+If you do not already, make sure to install Nodejs and the Node Package Manager (npm)
 
-### Binary Tree Node
-A Node class to hold generic comparable data, and two pointers: a left and right child node.<br>
-A building block for binary trees.<br>
-Included methods are:
-* Unparameterized constructor
-* Parameterized constructor to set data
+## Download
 
+To download run the following command:
+```git clone https://github.com/NoahNaiman/Sauron.git```
+Navigate to the newly cloned directory and run:
+```npm install```
+Finally, to fire up the server just run:
+```npm start```
 
-_Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/BinaryTreeNodeNode.java
+##The Interface
 
-### Node
-A basic Node class to hold generic comparable Data.<br>
-Included methods are:
-* Unparameterized constructor
-* Parameterized constructor to set data
+Sauron runs by default on localhost 3000. Naviagte there and you will see this form:
+![Alt text](/public/images/SauronForm.png?raw=true)
 
+###Project Name
+A name given to your project, must be unique from any other uploaded project or it will be overwritten.
 
-_Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/Node.java
+###Email
+A real email. Possible expansion plans include sending this address a note when their project is hosted, as
+well as how to navigate to it.
 
-### Singly Linked Node
-A Node class to hold generic comparable data, and a pointer another node.<br>
-A building block for a singly linked list.<br>
-Included methods are:
-* Unparameterized constructor
-* Parameterized constructor to set data
-* Parameterized constructor to set data and next node.
+###Launch Command
+This is the command for launching whatever your hosted project is, i.e. npm start, python myProjectName.py, etc.
+
+###Files
+The actual project to be hosted. As of right now Sauron does not accept subdirectories, so all files and dependencies
+must be in the same folder.
 
 
-_Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/SinglyLinkedListNode.java
+#FAQ
 
+##Why is it called Sauron?
+Because it is one server to rule them.
 
-## Trees
+##So...it's AWS Elastic Beanstalk?
+To an extent it is similar. I value being able to use cloud tools, and in a real work environment would certainly
+have chosen to use them over writing the entire thing from scratch. However this was a personal project I wanted
+to learn from, and I really think I did.
 
-### Binary Search Tree
-A tree where each node has at most two children: left and right.<br>
-All left children's data will be comparably less than their parent's.<br>
-All right children's data will be comparably greater than their parent's.<br>
-Included methods are:
-* Insert
-* Search
-* Delete first found instance of given data
-* Get height
-* Traverse in pre-order: parent, left child, right child.
-* Traverse in order: left child, parent, right child.
-* Traverse in post-order: left child, right child, parent.
-* Traverse in level order.
+##Isn't it sort of insecure to let people upload whatever they want?
+Yes. Were I to use this for production I would add several more authentication methods to make it more secure. While
+I can't control what people upload, some possible ways to mitigate this issue include: adding a database of authenticated
+users, scanning uploaded files for malicious intent, keeping track of resources being used by various processes in case a
+kill is needed for any of them.
 
-
-_Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/BinarySearchTree.java
-
-
-## Lists
-
-### Singly Linked List
-A list in which each node contains data and a pointer to the next node.<br>
-Included methods are:
-* Get length
-* Prepend
-* Append
-* Search
-* Delete first found instance of given data
-* Delete all instances of given data
-* Clone list
-* Get a reversed version of the list
-* Check for a loop
-* Unloop
-* Print out list
-
-
-_Quick Link:_ https://github.com/NoahNaiman/Fundamentals/blob/master/Data_Structures/SinglyLinkedList.java
- -->
+##Can I use this for my projects?
+Abosuletely! Be aware that this is a personal project and therefore not 100% stable. Using it will require heavy tweaking,
+but any suggestions, forks, pull requests, etc. are very welcome!
