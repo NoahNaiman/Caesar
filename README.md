@@ -2,7 +2,7 @@
 
 <div
 align="center">
-:eyes:volcano:ring:
+:eyes::volcano::ring:
 </div>
 
 <div align="center">
