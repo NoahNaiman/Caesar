@@ -18,7 +18,6 @@ align="center">
 - [FAQ](#faq)
 
 # Philosophy
-
 I attend a whole bunch of hackathons, They are one of my favorite activities. But time after
 time I find myself using technologies I don't fully understand. And that bothers me to no end!
 Like many a computer scientist before me, not knowing how or why something works keep me up at
@@ -54,9 +53,11 @@ Navigate to the newly cloned directory and run:
 Finally, to fire up the server just run:
 ```npm start```
 
-##T he Interface
+## The Interface
 Sauron runs by default on localhost 3000. Naviagte there and you will see this form:
+
 ![Alt text](/public/images/SauronForm.png?raw=true)
+
 
 ### Project Name
 A name given to your project, must be unique from any other uploaded project or it will be overwritten.
