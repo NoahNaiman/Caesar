@@ -70,9 +70,9 @@ int main(int argc, char const *argv[]){
 		//Concatenate new route together
 		char *routePointer = newRoute;
 		routePointer = concatenate(routePointer, (char *)argv[1]);
-		routePointer = concatenate(routePointer, "', (req, res) =>\n\tres.send('localhost:");
+		routePointer = concatenate(routePointer, "', (req, res) =>{\n\tres.writeHead(302, {\n\t\tLocation: 'http://localhost:");
 		routePointer = concatenate(routePointer, (char *) argv[3]);
-		routePointer = concatenate(routePointer, "')\n);\n");
+		routePointer = concatenate(routePointer, "'\n\t});\n\tres.end();\n});\n");
 
 		//Append to server
 		printf("Writing to server\n");

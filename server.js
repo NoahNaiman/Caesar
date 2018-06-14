@@ -11,8 +11,8 @@ const path = require('path');
 
 //View engine setup
 app.set('view engine', 'pug');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'));
 
 //Setup port and port nets
 const port = process.env.PORT || 3000;
@@ -67,20 +67,25 @@ app.post('/landofmordor', (req, res) =>{
 	form.on('end', () =>{
 		if(starter != 'none' && starter != 'undefined'){
 			//Append to processes.txt
-			fs.appendFileSync('processes.txt', (starter + '\n'));
+			fs.appendFileSync('processes.txt', (starter) + '\n');
 			//Add port number to portNext
 			portNet.push(parseInt(portNet.length) + parseInt(port));
 		}
 
 		//Create new path and launch processes
 		forge(newRouteName, starter, portNet[portNet.length-1]);
-		res.render('list');
+		setTimeout(()=>{
+			res.render('list');
+		}, 5);
 	});
 });
 
+//Safely exit
 process.on('SIGINT', ()=>{
-  mtDoom();
-  process.exit(0);
+	//Clean up files
+	exec.execFileSync('src/gollum.sh');
+	//Exit process
+	process.exit(0);
 });
 
 //Recursively delete a folder and its contents
@@ -102,16 +107,6 @@ function deleteFolder(dir){
 //Create express routes and/or launches project for project
 function forge(routeName, startCommand, launchPort){
 	exec.execFile('bin/sauron', [routeName, startCommand, launchPort], (error, stdout) =>{
-		if(error){
-			throw error;
-		}
-		console.log(stdout);
-	});
-}
-
-//Cleanup files on safe exit
-function mtDoom(){
-	exec.execFile('src/gollum.sh', (error, stdout)=>{
 		if(error){
 			throw error;
 		}

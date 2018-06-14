@@ -9,7 +9,7 @@ done < processes.txt
 
 echo 'Cleaning up processes.txt'
 
-echo '' > processes.txt
+rm processes.txt && touch processes.txt
 
 echo 'Cleaning up list.pug'
 
