@@ -76,7 +76,7 @@ must be in the same folder.
 # FAQ
 
 ### Why is it called Sauron?
-Because it is one server to rule them.
+Because it is one server to rule them all.
 
 ### So...it's AWS Elastic Beanstalk?
 To an extent it is similar. I value being able to use cloud tools, and in a real work environment would certainly
